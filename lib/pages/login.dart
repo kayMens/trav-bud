@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/main.dart';
 import 'register.dart';
 
 class LoginPage extends StatefulWidget {
@@ -152,7 +153,13 @@ class _LoginPageState extends State<LoginPage> {
                                 fontFamily: 'Cabin'
                             )
                         ),
-                        onPressed: validateAndSubmit,
+                        onPressed: () {
+                          Navigator.push(context,
+                            MaterialPageRoute(
+                              builder: (context) => HomePage()
+                            )
+                          );
+                        },
                       ),
                     )
                 ),

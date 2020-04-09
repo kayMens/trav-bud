@@ -1,4 +1,4 @@
-package com.example.app.flutterapp
+package com.travbud.app
 
 import android.os.Bundle
 

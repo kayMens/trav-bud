@@ -85,7 +85,7 @@ class _IntroPageState extends State<IntroPage> {
            )
          ],
        ),
-        pathImage: 'assets/img/mouse.png',
+        pathImage: 'assets/img/trav.png',
         backgroundColor: Colors.white,
       )
     );
@@ -143,7 +143,7 @@ class _IntroPageState extends State<IntroPage> {
               )
             ],
           ),
-          pathImage: 'assets/img/mouse.png',
+          pathImage: 'assets/img/share.png',
           backgroundColor: Colors.white,
         )
     );
@@ -201,7 +201,7 @@ class _IntroPageState extends State<IntroPage> {
               )
             ],
           ),
-          pathImage: 'assets/img/mouse.png',
+          pathImage: 'assets/img/contact.png',
           backgroundColor: Colors.white,
         )
     );
