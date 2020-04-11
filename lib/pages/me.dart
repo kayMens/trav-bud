@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_app/pages/account.dart';
+import 'package:flutter_app/pages/contact.dart';
 
 class MePage extends StatelessWidget {
 
@@ -191,7 +192,7 @@ class MePage extends StatelessWidget {
                             onPressed: () {
                               Navigator.push(context,
                                 MaterialPageRoute(
-                                  builder: (context) => AccountPage()
+                                  builder: (context) => ContactPage()
                                 )
                              );
                             },

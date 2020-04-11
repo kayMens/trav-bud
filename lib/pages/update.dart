@@ -30,7 +30,8 @@ class UpdatePage extends StatelessWidget {
                       builder: (context) => null
                   )
               );*/
-              SnackBar(content: Text('Index @ $index'), duration: Duration(seconds: 2),);
+
+              SnackBar(content: Text('Index @ $index'), duration: Duration(seconds: 2));
             },
           );
         },
@@ -45,50 +46,59 @@ class UpdateItem extends StatelessWidget {
   final Update item;
 
   Widget build(BuildContext context) {
-   return Container(
-     padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-     child:  Row(
-       children: <Widget>[
-         Padding(
-           padding: EdgeInsets.only(left: 14.0, right: 10.0),
-           child: Icon(
-             Icons.adb,
-             size: 32.0,
-           ),
-         ),
-         Expanded(
-             child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
-               children: <Widget>[
-                 Text(item.title,
-                   style: TextStyle(
-                       fontWeight: FontWeight.bold,
-                       fontFamily: 'Cabin',
-                       fontSize: 18.0,
-                       color: Colors.grey[700],
-                   ),
-                 ),
-                 Text(item.message,
-                   style: TextStyle(
-                       fontFamily: 'Cabin',
-                       fontSize: 15.0,
-                       color: Colors.grey
-                   ),
-                 ),
-               ],
-             )
-         ),
-         Padding(
-           padding: EdgeInsets.only(right: 8.0),
-           child: Text(item.time,
-             style: TextStyle(
-                 fontFamily: 'Cabin',
-                 color: Colors.grey
+   return  Column(
+     children: <Widget>[
+       Padding(
+         padding: EdgeInsets.only(top: 12.0, bottom: 12.0),
+         child: Row(
+           children: <Widget>[
+             Padding(
+               padding: EdgeInsets.only(left: 14.0, right: 10.0),
+               child: Icon(
+                 Icons.adb,
+                 size: 32.0,
+               ),
              ),
-           ),
-         )
-       ],
-     )
+             Expanded(
+                 child: Column(
+                   crossAxisAlignment: CrossAxisAlignment.start,
+                   children: <Widget>[
+                     Text(item.title,
+                       style: TextStyle(
+                         fontWeight: FontWeight.bold,
+                         fontFamily: 'Cabin',
+                         fontSize: 18.0,
+                         color: Colors.grey[700],
+                       ),
+                     ),
+                     Text(item.message,
+                       style: TextStyle(
+                           fontFamily: 'Cabin',
+                           fontSize: 15.0,
+                           color: Colors.grey
+                       ),
+                     ),
+                   ],
+                 )
+             ),
+             Padding(
+               padding: EdgeInsets.only(right: 8.0),
+               child: Text(item.time,
+                 style: TextStyle(
+                     fontFamily: 'Cabin',
+                     color: Colors.grey
+                 ),
+               ),
+             ),
+           ],
+         ),
+       ),
+       Divider(
+         height: 1.0,
+         color: Colors.grey,
+         indent: 57.0,
+       )
+     ],
    );
   }
 }

@@ -1,6 +1,10 @@
+import 'dart:collection';
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:overlay_container/overlay_container.dart';
 import 'pages/intro.dart';
 import 'pages/login.dart';
 import 'pages/me.dart';
@@ -10,7 +14,7 @@ import 'pages/update.dart';
 void main() => runApp(new MyApp());
 
 class MyApp extends StatelessWidget {
-  final int _isLoggedIn = 1;
+  final int _isLoggedIn = 0;
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
@@ -34,20 +38,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  GoogleMapController mapController;
   int _selectedIndex = 0;
-  final LatLng _center = const LatLng(45.521363, -122.677433);
-
-  void _onMapCreated(GoogleMapController controller) {
-    mapController = controller;
-  }
-
-  GoogleMap renderMap() {
-    return GoogleMap(
-      onMapCreated: _onMapCreated,
-      initialCameraPosition: CameraPosition(target: _center, zoom: 11.0),
-    );
-  }
 
   void _onItemTapped(int index) {
     setState(() {
@@ -63,18 +54,13 @@ class _HomePageState extends State<HomePage> {
           child: IndexedStack(
             index: _selectedIndex,
             children: <Widget>[
-              renderMap(),
+              MapPage(selectedIndex: _selectedIndex),
               MePage(),
               UpdatePage(),
               EmergencyPage()
             ],
           )
-      ),
-      floatingActionButton: (_selectedIndex == 0)? FloatingActionButton(
-          onPressed: null,
-          tooltip: 'Increment',
-          child: new Icon(Icons.navigation),
-          foregroundColor: Colors.white) : null, // This trailing comma makes auto-formatting nicer for build methods.
+      ), // This trailing comma makes auto-formatting nicer for build methods.
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
@@ -124,3 +110,117 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
+class MapPage extends StatefulWidget {
+  MapPage({Key key, this.selectedIndex}) : super(key : key);
+
+  final int selectedIndex;
+  @override
+  _MapPageState createState() => _MapPageState();
+}
+class _MapPageState extends State<MapPage> {
+  GoogleMapController mapController;
+  bool _showOverlay = false;
+  bool _isOnRoute = false;
+  final LatLng _center = const LatLng(45.521363, -122.677433);
+  Set<Marker> _markers = {};
+  
+  void _onMapCreated(GoogleMapController controller) {
+    mapController = controller;
+  }
+
+  void _toggleOverlays() {
+    setState(() {
+      _showOverlay = !_showOverlay;
+    });
+  }
+
+  Widget renderOverlay() {
+     return Container(
+       padding: EdgeInsets.fromLTRB(16.0, 20.0, 16.0, 20.0),
+       decoration: BoxDecoration(
+         color: Colors.grey[800],
+         backgroundBlendMode: BlendMode.multiply
+       ),
+         child: Column(
+           crossAxisAlignment: CrossAxisAlignment.start,
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: <Widget>[
+             Icon(
+               Icons.directions_car,
+               color: Colors.white,
+               size: 24.0,
+             ),
+             Text('10 km',
+               style: TextStyle(
+                   color: Colors.white,
+                   fontSize: 22.0,
+                   fontFamily: 'Cabin'
+               ),
+             ),
+             Padding(
+               padding: EdgeInsets.only(top: 24.0),
+             ),
+             Icon(
+               Icons.timer,
+               color: Colors.white,
+               size: 24.0,
+             ),
+              Text('1hr 20m',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22.0,
+                    fontFamily: 'Cabin'
+                ),
+              ),
+             Padding(
+               padding: EdgeInsets.only(top: 24.0),
+             ),
+             Icon(
+               Icons.cloud,
+               color: Colors.white,
+               size: 24.0,
+             ),
+             Text('35C',
+               style: TextStyle(
+                 color: Colors.white,
+                 fontSize: 22.0,
+                   fontFamily: 'Cabin'
+               ),
+             )
+           ],
+       )
+     );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      floatingActionButton: (widget.selectedIndex == 0)? FloatingActionButton(
+          onPressed: _toggleOverlays,
+          tooltip: 'Explore',
+          child: new Icon(Icons.near_me),
+          foregroundColor: Colors.white
+      ) : null,
+      body: Stack(
+        fit: StackFit.expand,
+        children: <Widget>[
+           Container(
+             child: GoogleMap(
+               onMapCreated: _onMapCreated,
+               initialCameraPosition: CameraPosition(target: _center, zoom: 11.0),
+               markers: {
+                 Marker(
+                   markerId: MarkerId('ss'),
+                   position: _center,
+                   icon:  BitmapDescriptor.defaultMarkerWithHue(100)
+                 )
+               },
+               mapToolbarEnabled: false,
+             ),
+           ),
+           (_showOverlay)? renderOverlay() : Container()
+        ]
+      ),
+    );
+  }
+}
