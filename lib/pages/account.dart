@@ -8,7 +8,8 @@ class AccountPage extends StatefulWidget {
   _AccountPage createState() => _AccountPage();
 }
 class _AccountPage extends State<AccountPage> {
-  final GlobalKey _globalKey = GlobalKey();
+  final _acFormKey = GlobalKey<FormState>();
+  final _pdFormKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +28,8 @@ class _AccountPage extends State<AccountPage> {
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Container(
-                  padding: EdgeInsets.only(right: 18.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.0)
-                  ),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(50.0),
                   child: Image.asset('assets/img/back.jpg',
                     width: 80.0,
                     height: 80.0,
@@ -41,9 +39,10 @@ class _AccountPage extends State<AccountPage> {
                 ),
                 Expanded(
                   child: Form(
-                    key: _globalKey,
+                    key: _acFormKey,
                     child: ListView(
                       shrinkWrap: true,
+                      padding: EdgeInsets.only(left: 10.0),
                       children: <Widget>[
                         Container(
                           margin: EdgeInsets.only(bottom: 12.0),
@@ -63,9 +62,9 @@ class _AccountPage extends State<AccountPage> {
                                 labelText: 'Name',
                                 contentPadding: EdgeInsets.fromLTRB(10.0, 4.0, 10.0, 4.0),
                                 border: OutlineInputBorder(
-                                  borderSide: BorderSide(color: Colors.teal),
+                                  borderSide: BorderSide(color: Colors.teal[100]),
                                     gapPadding: 1.5,
-                                  borderRadius: BorderRadius.all(Radius.circular(10.0))
+                                  borderRadius: BorderRadius.all(Radius.circular(6.0))
                               )
                             ),
                           ),
@@ -88,9 +87,9 @@ class _AccountPage extends State<AccountPage> {
                                 labelText: 'Phone',
                                 contentPadding: EdgeInsets.fromLTRB(10.0, 4.0, 10.0, 4.0),
                                 border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.teal),
+                                    borderSide: BorderSide(color: Colors.teal[100]),
                                     gapPadding: 1.5,
-                                    borderRadius: BorderRadius.all(Radius.circular(10.0))
+                                    borderRadius: BorderRadius.all(Radius.circular(6.0))
                                 )
                             ),
                           ),
@@ -113,20 +112,20 @@ class _AccountPage extends State<AccountPage> {
                                 labelText: 'Email',
                                 contentPadding: EdgeInsets.fromLTRB(10.0, 4.0, 10.0, 4.0),
                                 border: OutlineInputBorder(
-                                    borderSide: BorderSide(color: Colors.teal),
+                                    borderSide: BorderSide(color: Colors.teal[100]),
                                     gapPadding: 1.5,
-                                    borderRadius: BorderRadius.all(Radius.circular(10.0))
+                                    borderRadius: BorderRadius.all(Radius.circular(6.0))
                                 )
                             ),
                           ),
                         ),
                         SizedBox(
-                          height: 32.0,
+                          height: 34.0,
                           width: 90.0,
                           child: new RaisedButton(
                               elevation: 1.0,
                               shape: new RoundedRectangleBorder(
-                                  borderRadius: new BorderRadius.circular(30.0)
+                                  borderRadius: new BorderRadius.circular(18.0)
                               ),
                               color: Colors.teal,
                               child: new Text('Save',
@@ -137,7 +136,11 @@ class _AccountPage extends State<AccountPage> {
                                       fontFamily: 'Cabin'
                                   )
                               ),
-                              onPressed: null
+                              onPressed: () {
+                                if(_acFormKey.currentState.validate()){
+
+                                }
+                              }
                           ),
                         ),
                       ],
@@ -148,23 +151,123 @@ class _AccountPage extends State<AccountPage> {
             ),
             Padding(
               padding: EdgeInsets.only(top: 30.0, bottom: 30.0),
-              child: Divider(thickness: 1.0, color: Colors.grey, indent: 70.0, endIndent: 70.0,),
+              child: Divider(thickness: 1.0, color: Colors.grey[300], indent: 90.0, endIndent: 90.0,),
             ),
             Text('Update Password',
               style: TextStyle(
-                  fontSize: 18.0,
+                  fontSize: 19.0,
                   fontFamily: 'Cabin',
                   fontWeight: FontWeight.bold
               ),
             ),
             Container(
               child: Form(
+                key: _pdFormKey,
                 child: ListView(
                   shrinkWrap: true,
                   children: <Widget>[
-                    TextFormField(),
-                    TextFormField(),
-                    TextFormField(),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10.0, top: 10.0),
+                      child: TextFormField(
+                        maxLines: 1,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        cursorColor: Colors.amber[300],
+                        cursorWidth: 1.0,
+                        style: TextStyle(
+                            fontFamily: 'Cabin',
+                            fontSize: 18.0
+                        ),
+                        decoration: InputDecoration(
+                            hintText: 'Current password',
+                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                            labelText: 'Current',
+                            contentPadding: EdgeInsets.fromLTRB(10.0, 4.0, 10.0, 4.0),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.teal[100]),
+                                gapPadding: 1.5,
+                                borderRadius: BorderRadius.all(Radius.circular(6.0))
+                            )
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10.0),
+                      child: TextFormField(
+                        maxLines: 1,
+                        textInputAction: TextInputAction.next,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        cursorColor: Colors.amber[300],
+                        cursorWidth: 1.0,
+                        style: TextStyle(
+                            fontFamily: 'Cabin',
+                            fontSize: 18.0
+                        ),
+                        decoration: InputDecoration(
+                            hintText: 'New Password',
+                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                            labelText: 'New',
+                            contentPadding: EdgeInsets.fromLTRB(10.0, 4.0, 10.0, 4.0),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.teal[100]),
+                                gapPadding: 1.5,
+                                borderRadius: BorderRadius.all(Radius.circular(6.0))
+                            )
+                        ),
+                      ),
+                    ),
+                    Container(
+                      margin: EdgeInsets.only(bottom: 10.0),
+                      child: TextFormField(
+                        maxLines: 1,
+                        textInputAction: TextInputAction.done,
+                        keyboardType: TextInputType.visiblePassword,
+                        obscureText: true,
+                        cursorColor: Colors.amber[300],
+                        cursorWidth: 1.0,
+                        style: TextStyle(
+                            fontFamily: 'Cabin',
+                            fontSize: 18.0
+                        ),
+                        decoration: InputDecoration(
+                            hintText: 'Confirm password',
+                            floatingLabelBehavior: FloatingLabelBehavior.auto,
+                            labelText: 'Confirm',
+                            contentPadding: EdgeInsets.fromLTRB(10.0, 4.0, 10.0, 4.0),
+                            border: OutlineInputBorder(
+                                borderSide: BorderSide(color: Colors.teal[100]),
+                                gapPadding: 1.5,
+                                borderRadius: BorderRadius.all(Radius.circular(6.0))
+                            )
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 34.0,
+                      width: 90.0,
+                      child: new RaisedButton(
+                          elevation: 1.0,
+                          shape: new RoundedRectangleBorder(
+                              borderRadius: new BorderRadius.circular(18.0)
+                          ),
+                          color: Colors.teal,
+                          child: new Text('Save',
+                              style: new TextStyle(
+                                  fontSize: 16.0,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Cabin'
+                              )
+                          ),
+                          onPressed: () {
+                            if(_pdFormKey.currentState.validate()){
+
+                            }
+                          }
+                      ),
+                    ),
                   ],
                 ),
               ),

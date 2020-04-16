@@ -20,11 +20,15 @@ class MePage extends StatelessWidget {
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage('assets/img/leisure.png'),
+                            alignment: Alignment.bottomCenter,
+                        ),
                         borderRadius: BorderRadius.only(
                             bottomRight: Radius.circular(38.0),
                             bottomLeft: Radius.circular(38.0)
                         ),
-                        color: Colors.amber[200],
+                        color: Colors.white,
                       ),
                       padding: EdgeInsets.fromLTRB(34.0, 100.0, 26.0, 20.0),
                       child: Column(
@@ -56,28 +60,20 @@ class MePage extends StatelessWidget {
                             child: Container()
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
                             children: <Widget>[
-                              Expanded(
-                                child: Container()
-                              ),
-                              Container(
+                              SizedBox(
                                 height: 30.0,
                                 width: 80.0,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                        Radius.circular(20.0)
-                                    ),
-                                    border: Border.all(
-                                        color: Colors.amber,
-                                        width: 1.8
-                                    )
-                                ),
                                 child: FlatButton(
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
+//                                  borderSide: BorderSide(color: Colors.amber, width: 1.5),
+                                  color:  Colors.amber,
                                   child: Text('Logout',
                                       style: TextStyle(
                                           fontFamily: 'Cabin',
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.grey[700],
+                                          color: Colors.grey[100],
                                       )
                                   ),
                                   onPressed: logout,

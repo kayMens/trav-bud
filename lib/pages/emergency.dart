@@ -64,10 +64,10 @@ class _EmergencyPageState extends State<EmergencyPage> {
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 10.0),
-                          child: Text('Request Police Assistance',
+                          child: Text('Police Assistance',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 23.5,
+                              fontSize: 24.5,
                               fontFamily: 'Cabin',
                             ),
                             textAlign: TextAlign.center,
@@ -84,6 +84,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
                             ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(right: 5.0),
@@ -147,10 +148,10 @@ class _EmergencyPageState extends State<EmergencyPage> {
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 10.0),
-                          child: Text('Request Ambulance Service',
+                          child: Text('Ambulance Service',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 23.5,
+                              fontSize: 24.5,
                               fontFamily: 'Cabin',
                             ),
                             textAlign: TextAlign.center,
@@ -167,6 +168,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
                             ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(right: 5.0),
@@ -230,10 +232,10 @@ class _EmergencyPageState extends State<EmergencyPage> {
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 10.0),
-                          child: Text('Contact Vehicle Insurer',
+                          child: Text('Vehicle Insurer',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 23.5,
+                              fontSize: 24.5,
                               fontFamily: 'Cabin',
                             ),
                             textAlign: TextAlign.center,
@@ -250,6 +252,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
                             ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(right: 5.0),
@@ -313,10 +316,10 @@ class _EmergencyPageState extends State<EmergencyPage> {
                       children: <Widget>[
                         Padding(
                           padding: EdgeInsets.fromLTRB(0.0, 5.0, 0.0, 10.0),
-                          child: Text('Contact Customer Hotline',
+                          child: Text('Customer Hotline',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 23.5,
+                              fontSize: 24.5,
                               fontFamily: 'Cabin',
                             ),
                             textAlign: TextAlign.center,
@@ -333,6 +336,7 @@ class _EmergencyPageState extends State<EmergencyPage> {
                             ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Padding(
                                   padding: EdgeInsets.only(right: 5.0),

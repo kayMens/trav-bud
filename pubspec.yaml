@@ -12,8 +12,7 @@ dependencies:
   scoped_model: ^1.0.1
   intro_slider: ^2.2.9
   google_maps_flutter: ^0.5.11
-  overlay_container: ^0.0.4+1
-#  flutter_svg: ^0.17.4
+  flutter_svg: ^0.17.4
 
 dev_dependencies:
   flutter_test:
@@ -38,6 +37,8 @@ flutter:
      - assets/img/trav.png
      - assets/img/share.png
      - assets/img/contact.png
+     - assets/img/leisure.png
+     - assets/img/nature.svg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
